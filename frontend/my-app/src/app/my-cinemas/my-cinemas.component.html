@@ -1,0 +1,21 @@
+<div *ngIf="cinemas"
+     class="d-flex justify-content-center">
+  <div class="w-75 d-flex bg-light p-4 mt-4 border rounded">
+    <div class="d-flex flex-column w-100">
+      <div class="d-flex justify-content-between mt-3 pb-3 border-bottom w-100"
+           *ngFor="let cinema of cinemas">
+        <img class="mr-2"
+             src="{{cinema.image}}"
+             alt="image">
+        <div class="mr-2 flex-fill">
+          <div class="font-weight-bold">{{cinema.title}}</div>
+          <div class="mt-2">{{cinema.description}}</div>
+        </div>
+        <div>
+          <button (click)="deleteMyCinema(cinema.id)"
+                  class="px-2 p-1 btn-primary btn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

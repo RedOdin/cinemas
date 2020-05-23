@@ -1,0 +1,32 @@
+<div class="d-flex justify-content-center mb-5">
+  <div class="d-flex flex-column w-50 mt-4 bg-light border rounded p-3">
+    <h2 class="align-self-center border-bottom pr-2 pl-2">Creating cinema</h2>
+    <div class="image-box mt-3 w-75 align-self-center">
+      <img *ngIf="cinema.image"
+           src="{{cinema.image}}"
+           class="w-100 h-100 align-self-center"
+           alt="image">
+    </div>
+    <input [(ngModel)]="cinema.title"
+           name="title"
+           class="w-75 align-self-center mt-3 p-2"
+           type="text"
+           placeholder="Title"
+           required>
+    <input [(ngModel)]="cinema.description"
+           name="description"
+           class="w-75 align-self-center mt-3 p-2"
+           type="text"
+           placeholder="Description"
+           required>
+    <input [(ngModel)]="cinema.image"
+           name="image"
+           class="w-75 align-self-center mt-3 p-2"
+           type="text"
+           placeholder="Image"
+           required>
+    <button (click)="createCinema()"
+            class="w-75 align-self-center mt-3 p-2 btn btn-primary"
+            routerLink="">Save</button>
+  </div>
+</div>

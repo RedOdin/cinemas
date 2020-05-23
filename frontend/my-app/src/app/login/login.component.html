@@ -1,0 +1,28 @@
+<div class="main-container d-flex justify-content-center flex-column">
+  <div class="d-flex justify-content-center">
+    <div class="d-flex flex-column bg-light w-50 border rounded p-2">
+      <h2 class="align-self-center border-bottom pr-2 pl-2 mt-3">Log in</h2>
+      <form class="d-flex flex-column w-100">
+        <input [(ngModel)]="user.email"
+               name="email"
+               class="w-75 align-self-center mt-3 p-2"
+               type="text"
+               placeholder="Email">
+        <input [(ngModel)]="user.password"
+               name="password"
+               class="w-75 align-self-center mt-3 p-2"
+               type="password"
+               placeholder="Password">
+        <button (click)="signIn()"
+                class="w-75 align-self-center mt-3 p-2 btn btn-primary">Log me in</button>
+      </form>
+      <div class="align-self-center">
+        <p class="mt-2">New user?
+          <a class="text-red"
+             routerLink="/registration">Sign up!</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+

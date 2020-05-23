@@ -1,0 +1,6 @@
+export interface ICinemaModel {
+  id?: number;
+  title: string;
+  description: string;
+  image: string;
+}
