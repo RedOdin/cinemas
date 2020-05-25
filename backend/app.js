@@ -32,11 +32,14 @@ db.connect((err) => {
 app.post('/registration', userController.registration);
 app.post('/login', userController.login);
 app.get('/account', userController.account);
-app.get('/cinemas', cinemaController.cinemas());
-app.post('/create-cinema', cinemaController.createCinema());
-app.post('/add-cinema', cinemaController.addCinema());
-app.get('/my-cinemas', cinemaController.myCinemas());
-app.delete('/delete-my-cinema/:id', cinemaController.deleteMyCinema());
+app.get('/cinemas', cinemaController.cinemas);
+app.post('/create-cinema', cinemaController.createCinema);
+app.post('/add-cinema', cinemaController.addCinema);
+app.get('/my-cinemas', cinemaController.myCinemas);
+app.delete('/delete-my-cinema/:id', cinemaController.deleteMyCinema);
+
+exports.db = db;
+exports.jwt = jwt;
 
 app.listen(3000, () => {
     console.log('Server start');

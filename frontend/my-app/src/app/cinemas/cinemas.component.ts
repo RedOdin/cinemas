@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IUserModel } from '../models/user.model';
 import { AppDataService } from '../app-data.service';
 import { ICinemaModel } from '../models/cinema.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cinemas',
@@ -12,7 +13,8 @@ export class CinemasComponent implements OnInit {
 
   public cinemas: ICinemaModel[];
 
-  constructor(private readonly appDataService: AppDataService) { }
+  constructor(private readonly appDataService: AppDataService,
+              private readonly router: Router) { }
 
   ngOnInit() {
     this.appDataService.getCinemas().subscribe((cinemas: ICinemaModel[]) => {
@@ -21,7 +23,9 @@ export class CinemasComponent implements OnInit {
   }
 
   public addCinema(id: number): void {
-    this.appDataService.addCinema(id).subscribe();
+    this.appDataService.addCinema(id).subscribe(
+      () => {},
+      () => { this.router.navigate(['/login']) });
   }
 
 }
