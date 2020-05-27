@@ -2,18 +2,16 @@
      class="d-flex justify-content-center">
   <div class="w-75 d-flex bg-light p-4 mt-4 border rounded">
     <div class="d-flex flex-column">
-      <div class="d-flex justify-content-between mt-3 pb-3 border-bottom"
-           *ngFor="let cinema of cinemas">
-        <img class="mr-2"
+      <div class="cursor-pointer d-flex justify-content-between mt-3 p-2 border-bottom"
+           *ngFor="let cinema of cinemas"
+           (click)="viewCinema(cinema.id)">
+        <img class="mr-2 w-25"
              src="{{cinema.image}}"
-             alt="image">
-        <div class="mr-2 flex-fill">
+             alt="image"
+             height="170">
+        <div class="mr-2 w-75">
           <div class="font-weight-bold">{{cinema.title}}</div>
           <div class="mt-2">{{cinema.description}}</div>
-        </div>
-        <div>
-          <button (click)="addCinema(cinema.id)"
-                  class="px-2 p-1 btn btn-primary">Add</button>
         </div>
       </div>
     </div>

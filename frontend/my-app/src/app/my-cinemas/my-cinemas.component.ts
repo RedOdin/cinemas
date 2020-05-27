@@ -21,8 +21,8 @@ export class MyCinemasComponent implements OnInit {
     },(error => {this.router.navigate(['/login'])}))
   }
 
-  public deleteMyCinema(id: number): void {
-    this.appDataService.deleteMyCinema(id).subscribe((data) => {
+  public deleteMyCinema(cinema: ICinemaModel): void {
+    this.appDataService.deleteMyCinema({ idCinema: cinema.idCinema, seat: cinema.seat }).subscribe((data) => {
       this.appDataService.getMyCinemas().subscribe((cinemas: ICinemaModel[]) => {
         this.cinemas = cinemas;
       }, (error => { console.log(error);this.router.navigate(['/login'])}))

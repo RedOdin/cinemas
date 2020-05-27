@@ -1,4 +1,4 @@
-<header *ngIf="isLogin && account"
+<header *ngIf="isLogin"
         class="main-menu">
   <nav class="d-flex justify-content-between navbar navbar-expand-lg navbar-light bg-secondary h-100">
     <div>
@@ -8,7 +8,8 @@
               routerLink="/create-cinema">Create cinema</button>
     </div>
     <div class="d-flex">
-      <div class="mr-2">
+      <div *ngIf="account"
+           class="mr-2">
         <button class="btn-primary btn"
                 routerLink="/my-cinemas">{{account.email}}</button>
       </div>

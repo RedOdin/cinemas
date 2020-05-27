@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { IUserModel } from './models/user.model';
 import { AppDataService } from './app-data.service';
@@ -11,7 +11,7 @@ import { AppDataService } from './app-data.service';
 })
 export class AppComponent implements DoCheck, OnInit {
 
-  public isLogin: boolean;
+  public isLogin: boolean = false;
   public account: IUserModel;
 
   constructor(private readonly cookieService: CookieService,
@@ -32,6 +32,7 @@ export class AppComponent implements DoCheck, OnInit {
 
   public exit(): void {
     this.cookieService.delete('USER');
+    this.account = undefined;
   }
 
 }

@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { AppDataService } from './app-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateCinemaComponent } from './create-cinema/create-cinema.component';
+import { CinemaChoiceComponent } from './cinema-choice/cinema-choice.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CreateCinemaComponent } from './create-cinema/create-cinema.component';
     CinemasComponent,
     CinemaComponent,
     MyCinemasComponent,
-    CreateCinemaComponent
+    CreateCinemaComponent,
+    CinemaChoiceComponent
   ],
   imports: [
     BrowserModule,

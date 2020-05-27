@@ -52,7 +52,7 @@ exports.myCinemas = (req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    app.db.query(`SELECT cinemas_for_users.id, title, description, image FROM cinemas.cinemas JOIN cinemas.cinemas_for_users ON cinemas_for_users.id_cinema = cinemas.id WHERE cinemas_for_users.id_user = "${data[0].id}";`, (err, data) => {
+                    app.db.query(`SELECT title, description, image, seat, id_cinema AS idCinema FROM cinemas.cinemas JOIN cinemas.cinema_reserved ON cinema_reserved.id_cinema = cinemas.id WHERE cinema_reserved.id_user = "${data[0].id}";`, (err, data) => {
                         if (err) {
                             console.log(err);
                         } else {
@@ -66,7 +66,7 @@ exports.myCinemas = (req, res) => {
 };
 
 exports.deleteMyCinema = (req, res) => {
-
+    
     const userCookieJwt = req.cookies['USER'];
 
     app.jwt.verify(userCookieJwt, 'Hahaha', function(err, decoded) {
@@ -74,7 +74,7 @@ exports.deleteMyCinema = (req, res) => {
             res.status(403).json(
                 {errors: [{msg: 'FORBIDDEN_MSG'}]});
         } else {
-            app.db.query(`DELETE FROM cinemas_for_users WHERE id="${req.params.id}"`, (err, data) => {
+            app.db.query(`DELETE FROM cinema_reserved WHERE id_user="${decoded.id}" AND id_cinema="${req.body.cinema.idCinema}" AND seat="${req.body.cinema.seat}"`, (err, data) => {
                 if (err) {
                     console.log(err);
                 } else {
@@ -92,6 +92,58 @@ exports.cinemas = (req, res) => {
             console.log(err);
         } else {
             res.status(200).json(data);
+        }
+    });
+};
+
+exports.cinema = (req, res) => {
+
+    app.db.query(`SELECT id, title, description, image FROM cinemas WHERE id="${req.params.id}";`, (err, data) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.status(200).json(data[0]);
+        }
+    });
+};
+
+exports.cinemasReserved = (req, res) => {
+    const userCookieJwt = req.cookies['USER'];
+
+    app.jwt.verify(userCookieJwt, 'Hahaha', function(err, decoded) {
+        if (err) {
+            res.status(403).json(
+                {errors: [{msg: 'FORBIDDEN_MSG'}]});
+        } else {
+            app.db.query(`SELECT id, seat, id_user FROM cinema_reserved WHERE id_cinema="${req.params.id}";`, (err, data) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.status(200).json(data.map((t) => {
+                        return {seat: t.seat, id: t.id, isUser: t.id_user === decoded.id}
+                    }));
+                }
+            });
+        }
+    });
+};
+
+exports.seatReservation = (req, res) => {
+
+    const userCookieJwt = req.cookies['USER'];
+
+    app.jwt.verify(userCookieJwt, 'Hahaha', function(err, decoded) {
+        if (err) {
+            res.status(403).json(
+                {errors: [{msg: 'FORBIDDEN_MSG'}]});
+        } else {
+            app.db.query(`INSERT cinema_reserved(id_cinema, id_user, seat) VALUES (${req.body.id_cinema}, ${decoded.id}, ${req.body.seat})`, (err, data) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.status(200).json(data);
+                }
+            });
         }
     });
 };

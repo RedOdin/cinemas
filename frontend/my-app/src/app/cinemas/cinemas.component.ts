@@ -22,10 +22,8 @@ export class CinemasComponent implements OnInit {
     })
   }
 
-  public addCinema(id: number): void {
-    this.appDataService.addCinema(id).subscribe(
-      () => {},
-      () => { this.router.navigate(['/login']) });
+  public viewCinema(id: number): void {
+    this.router.navigate([`cinema-choice/${id}`]);
   }
 
 }

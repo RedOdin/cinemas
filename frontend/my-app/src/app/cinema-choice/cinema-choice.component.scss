@@ -1,0 +1,19 @@
+.seat{
+  width: 95%;
+  margin-right: 5%;
+  height: 4rem;
+  background: red;
+  border-bottom-left-radius: 40% 1.5rem;
+  border-bottom-right-radius: 40% 1.5rem;
+  cursor: pointer;
+}
+
+.seatReserved{
+  background: yellow;
+  cursor: default;
+}
+
+.selfReserved{
+  background: green;
+  cursor: default;
+}

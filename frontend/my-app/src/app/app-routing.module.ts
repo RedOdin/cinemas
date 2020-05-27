@@ -5,6 +5,7 @@ import { CinemasComponent } from './cinemas/cinemas.component';
 import { MyCinemasComponent } from './my-cinemas/my-cinemas.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { CreateCinemaComponent } from './create-cinema/create-cinema.component';
+import { CinemaChoiceComponent } from './cinema-choice/cinema-choice.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'create-cinema',
     component: CreateCinemaComponent
+  },
+  {
+    path: 'cinema-choice/:id',
+    component: CinemaChoiceComponent
   }
 ];
 
