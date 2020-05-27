@@ -35,7 +35,6 @@ app.get('/account', userController.account);
 app.get('/cinemas/:id', cinemaController.cinema);
 app.get('/cinemas', cinemaController.cinemas);
 app.post('/create-cinema', cinemaController.createCinema);
-app.post('/add-cinema', cinemaController.addCinema);
 app.get('/my-cinemas', cinemaController.myCinemas);
 app.post('/delete-my-cinema', cinemaController.deleteMyCinema);
 app.get('/seats-reserved/:id', cinemaController.cinemasReserved);

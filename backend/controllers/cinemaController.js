@@ -13,32 +13,6 @@ exports.createCinema = (req, res) => {
     });
 };
 
-exports.addCinema = (req, res) => {
-
-    const userCookieJwt = req.cookies['USER'];
-
-    app.jwt.verify(userCookieJwt, 'Hahaha', function(err, decoded) {
-        if (err) {
-            res.status(403).json(
-                {errors: [{msg: 'FORBIDDEN_ADMIN_MSG'}]});
-        } else {
-            app.db.query(`SELECT id, email FROM users WHERE id=${decoded.id};`, (err, data) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    app.db.query(`INSERT INTO cinemas_for_users  SET id_cinema="${req.body.id}", id_user="${data[0].id}";`, (err, data) => {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            res.status(200).json({});
-                        }
-                    });
-                }
-            });
-        }
-    });
-};
-
 exports.myCinemas = (req, res) => {
 
     const userCookieJwt = req.cookies['USER'];
@@ -66,7 +40,7 @@ exports.myCinemas = (req, res) => {
 };
 
 exports.deleteMyCinema = (req, res) => {
-    
+
     const userCookieJwt = req.cookies['USER'];
 
     app.jwt.verify(userCookieJwt, 'Hahaha', function(err, decoded) {
